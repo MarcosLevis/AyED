@@ -22,12 +22,10 @@ public class DfsCaminoMasCorto {
 		return minimo;		
 	}
 	
-	public boolean dfs(Vertice<String> origen, Vertice<String> destino, boolean [] marca, ListaGenerica<String> actual, ListaGenerica<String> minimo, int distActual, int distMinima){
-		boolean encontre = false;
+	public void dfs(Vertice<String> origen, Vertice<String> destino, boolean [] marca, ListaGenerica<String> actual, ListaGenerica<String> minimo, int distActual, int distMinima){
 		marca[origen.getPosicion()] = true;
 		actual.agregarFinal(origen.dato());
-		if(origen.dato().equals(destino.dato())) {
-			encontre = true;			
+		if(origen.dato().equals(destino.dato())) {			
 			if(distActual < distMinima) {
 				distMinima = distActual;
 				minimo.eliminarTodos();
@@ -41,18 +39,17 @@ public class DfsCaminoMasCorto {
 			adyac.comenzar();
 			while (!adyac.fin()) {
 				Arista<String> arista = adyac.proximo();				
-				if ((!marca[arista.verticeDestino().getPosicion()] && (!encontre)) {
+				if ((!marca[arista.verticeDestino().getPosicion()]{
 					distActual += arista.peso();
-					encontre = dfs(arista.verticeDestino(),destino,marca,actual,minimo,distActual,distMinima);
-				}
-				if (!encontre){
-					marca[arista.verticeDestino().getPosicion()] = false;
-					actual.eliminarEn(arista.verticeDestino().getPosicion());
-				}
+					dfs(arista.verticeDestino(),destino,marca,actual,minimo,distActual,distMinima);
+					distActual -= arista.peso();
+				}				
 			}
 						
 		}
-		return encontre;
+				     
+		marca[arista.verticeDestino().getPosicion()] = false;
+		actual.eliminarEn(arista.verticeDestino().getPosicion());
 	}
 	
 	
