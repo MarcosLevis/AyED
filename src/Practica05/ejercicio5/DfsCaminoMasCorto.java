@@ -41,12 +41,14 @@ public class DfsCaminoMasCorto {
 			adyac.comenzar();
 			while (!adyac.fin()) {
 				Arista<String> arista = adyac.proximo();				
-				if (!marca[arista.verticeDestino().getPosicion()]) {
+				if ((!marca[arista.verticeDestino().getPosicion()] && (!encontre)) {
 					distActual += arista.peso();
 					encontre = dfs(arista.verticeDestino(),destino,marca,actual,minimo,distActual,distMinima);
 				}
-				marca[arista.verticeDestino().getPosicion()] = false;
-				actual.eliminarEn(arista.verticeDestino().getPosicion());
+				if (!encontre){
+					marca[arista.verticeDestino().getPosicion()] = false;
+					actual.eliminarEn(arista.verticeDestino().getPosicion());
+				}
 			}
 						
 		}
