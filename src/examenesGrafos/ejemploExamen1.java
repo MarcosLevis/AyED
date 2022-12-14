@@ -26,12 +26,10 @@ private void dfs(Grafo<String> grafo, ListaGenerica<String> camino, boolean [] m
 	marca [origen.posicion()] = true;
 	camino.agregarAlFinal(origen.dato());
 	ListaGenerica<Arista<String>> adyac = origen.obtenerAdyacentes();
-	Arista<String> arista = null;
-	Vertice<String> vertice = null;
 	adyac.comenzar();
 	while ((!adyac.fin()) && (cantLocalidades > 0)){
-		arista = adyac.proximo();
-		vertice = arista.verticeDestino()
+		Arista<String> arista = adyac.proximo();
+		Vertice<String> vertice = arista.verticeDestino()
 		if ((!marca[vertice.posicion()) && (cantLocalidades > 0) && ((cantNafta - arista.peso()) > 0) && (!localidadesExceptuadas.incluye(vertice.dato())){
 			dfs(grafo,camino,marca,vertice,cantLocalidades - 1, cantNafta - arista.peso(), localidadesExceptuadas);
 		}			    
