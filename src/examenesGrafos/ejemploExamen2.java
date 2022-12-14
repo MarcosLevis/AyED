@@ -30,7 +30,8 @@ private boolean dfs(Grafo<String> ciudades, Vertice<String> origen, String desti
 				encontre = dfs(ciudades,vertice,destino,marca,camino,montoMaximo - arista.peso()):
 			}
 			if (!encontre){
-				camino.eliminarEn(camino.tamanio);
+				camino.eliminarEn(camino.tamanio);  ///esto pude ir afuerda del while tambien
+				marca [origen.posicion()] = false;
 			}
 		}
 	}
