@@ -34,12 +34,9 @@ private void dfs(Grafo<String> grafo, ListaGenerica<String> camino, boolean [] m
 		vertice = arista.verticeDestino()
 		if ((!marca[vertice.posicion()) && (cantLocalidades > 1) && ((cantNafta - arista.peso()) > 0) && (!localidadesExceptuadas.incluye(vertice.dato())){
 			dfs(grafo,camino,marca,vertice,cantLocalidades - 1, cantNafta - arista.peso(), localidadesExceptuadas);
-		}
-		if (cantLocalidades > 1){
-			camino.eliminarEn(camino.tamanio);
-		}
+		}		
 	}
-	
+	camino.eliminarEn(camino.tamanio);	
 }
 
 private Vertice<String> buscarVertice(Grafo<String> grafo){
