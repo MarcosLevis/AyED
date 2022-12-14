@@ -26,7 +26,7 @@ private boolean dfs(Grafo<String> ciudades, Vertice<String> origen, String desti
 		while ((!adyac.fin() && (!encontre){
 			arista = adyac.proximo();
 			vertice = arista.destino():
-			if ((!marca[vertice.posicion()) && (!encontre) && ((montoMaximo - arista.peso()) > 0)){
+			if ((!marca[vertice.posicion()) && (!encontre) && ((montoMaximo - arista.peso()) >= 0)){
 				encontre = dfs(ciudades,vertice,destino,marca,camino,montoMaximo - arista.peso()):
 			}
 			if (!encontre){
