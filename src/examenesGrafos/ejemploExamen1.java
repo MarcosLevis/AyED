@@ -18,25 +18,26 @@ public ListaGenerica<String> recorrido(Grafo<String> grafo, int cantLocalidades,
 	ListaGenerica<String> camino = new ListaEnlazadaGenerica<String>();
 	boolean [] marca = new boolean[gafo.listaDeVertices().tamanio() + 1];
 	Vertice<String> origen = buscarVertice(grafo);
-	dfs(grafo, camino, marca,origen, cantLocalidades, cantNafta, localidadesExceptuada);
+	dfs(grafo, camino, marca,origen, cantLocalidades - 1, cantNafta, localidadesExceptuada);
 	return camino;
 }
 
 private void dfs(Grafo<String> grafo, ListaGenerica<String> camino, boolean [] marca, Vertice<String> origen, int cantLocalidades, int cantNafta, ListaGenerica<String> localidadesExceptuadas){
-	marca [origen.posicio()] = true;
+	marca [origen.posicion()] = true;
 	camino.agregarAlFinal(origen.dato());
 	ListaGenerica<Arista<String>> adyac = origen.obtenerAdyacentes();
 	Arista<String> arista = null;
 	Vertice<String> vertice = null;
 	adyac.comenzar();
-	while ((!adyac.fin()) && (cantLocalidades > 1)){
+	while ((!adyac.fin()) && (cantLocalidades > 0)){
 		arista = adyac.proximo();
 		vertice = arista.verticeDestino()
-		if ((!marca[vertice.posicion()) && (cantLocalidades > 1) && ((cantNafta - arista.peso()) > 0) && (!localidadesExceptuadas.incluye(vertice.dato())){
+		if ((!marca[vertice.posicion()) && (cantLocalidades > 0) && ((cantNafta - arista.peso()) > 0) && (!localidadesExceptuadas.incluye(vertice.dato())){
 			dfs(grafo,camino,marca,vertice,cantLocalidades - 1, cantNafta - arista.peso(), localidadesExceptuadas);
-		}		
+		}			    
 	}
-	camino.eliminarEn(camino.tamanio);	///esta mal esto
+	camino.eliminarEn(camino.tamanio);	///esta bien
+	marca [origen.posicio()] = false;
 }
 
 private Vertice<String> buscarVertice(Grafo<String> grafo){
@@ -45,7 +46,7 @@ private Vertice<String> buscarVertice(Grafo<String> grafo){
 	lista.comenzar();
 	while (!lista.fin()){
 		vertice = lista.proximo()
-		if (vertice.dato().equals(Mendoza)){
+		if (vertice.dato().equals("Mendoza")){
 			return vertice;
 		}
 	}
