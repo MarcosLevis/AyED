@@ -1,0 +1,52 @@
+public class sinCargarCombustible-Grafos{
+
+          // en el problema en realidad es un metodo de la clase Grafo, se usa this
+
+    public ListaGenerica<String> caminoSinCargarCombustible(Grafo grafo, String ciudad1, String ciudad2, int tanqueAuto){
+        ListaGenerica<String> camino = new ListaEnlazadaGenerica<String>();
+        Vertice<String> origen = buscarCamino(grafo,ciudad1);
+        boolean [] marca = new boolean[grafo.listaDeVertices().tamanio() + 1];
+        dfs(grafo, camino, origen, ciudad2,marca,tanqueAuto);
+        return camino;
+    }
+
+    private boolean dfs(Grafo grafo; ListaGenerica<String> camino; Vertice<String> origen; String ciudad2; boolean [] marca, int tanqueAuto){
+        boolean encontre = false;
+        marca[origen.posicion()] = true;
+        camino.agregarAlFinal(origen.dato());
+        if (origen.dato().equals(ciudad2){
+            encontre = true;
+        } else{
+            ListaGenerica<Arista<String>> adyac = origen.obtenerAdyacentes();
+            Arista<String> arista = null;
+            Vertice<String> vertice = null;
+            adyac.comenzar();
+            while (!adyac.fin()) && (!encontre){
+                arista = adyac.proximo();
+                vertice = arista.destino();
+                if ((!marca[vertice.posicion()) && ((tanqueAuto - arista.peso()) > 0 ) && (!encontre)){
+                   encontre = dfs(grafo,camino,vertice,ciudad2,marca,tanqueAuto - arista.peso());
+                }
+                if (!encontre){
+                    camino.eliminarEn(camino.tamanio());
+                }
+            }
+        }
+        return encontre;
+    }
+    
+                      
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
