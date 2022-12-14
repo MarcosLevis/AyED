@@ -36,7 +36,7 @@ private void dfs(Grafo<String> grafo, ListaGenerica<String> camino, boolean [] m
 			dfs(grafo,camino,marca,vertice,cantLocalidades - 1, cantNafta - arista.peso(), localidadesExceptuadas);
 		}		
 	}
-	camino.eliminarEn(camino.tamanio);	
+	camino.eliminarEn(camino.tamanio);	///esta mal esto
 }
 
 private Vertice<String> buscarVertice(Grafo<String> grafo){
