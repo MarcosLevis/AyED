@@ -21,16 +21,17 @@ public class Examen {
         while (!adyac.fin()){
             arista = adyac.proximo();
             vertice = arista.destino();
-            distanciaRecorrida += arista.peso();
-            if ((!marca[vertice.posicion()]) && (distanciaRecorrida < cantKm)){
-                    dfs(mapaEstadios, caminoActual, caminosMaximos, vertice, marca, distanciaRecorrida, cantKm);
-            }else
-                caminosPosibles.agregarAlFinal(caminoActual);
-            }
-            distanciaRecorrida -= arista.peso();
+            
+            if ((!marca[vertice.posicion()]) && (distanciaRecorrida + arista.peso() <= cantKm)){
+                dfs(mapaEstadios, caminoActual, caminosMaximos, vertice, marca, distanciaRecorrida + arista.peso() , cantKm);
+             }else if (distanciaRecorrida > cantKm){
+                ListaGenerica<Estadio<String>> camino = caminoActual.clonar();
+                caminosPosibles.agregarAlFinal(camino);
+                }            
         }
         caminoActual.eliminarEn(caminoActual.tamanio());
-}
+        marca [origen.posicion()] = false;
+    }
                 
 
 
